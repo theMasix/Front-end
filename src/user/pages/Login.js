@@ -12,32 +12,42 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import logo from '../../assets/دانشکده علوم ریاضی.png'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    fontStyle:'italic'
-   }
+    fontStyle: 'italic'
+  },
+  logo: {
+    color: 'black',
+    height: '100px'
+  }
 }));
 
 export default function SignInSide() {
   const classes = useStyles();
 
   return (
-    <Typography className={classes.root}>
-      سامانه انتخاب واحد 
-    </Typography>
+    <Grid container xs spacing={2}>
+      <Grid container item xs={7} direction="column">
+        <Paper style={{ backgroundColor: 'black', height: '100vh', color: 'white' }}>Hello</Paper>
+      </Grid>
+
+      <Grid container item xs={5} direction="column" spacing={2}>
+          <Grid item xs={4}>
+            <img src={logo} className={classes.logo} />
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant={'h6'}>
+              سیستم آزمایشی انتخاب واحد
+          </Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant={'h6'}>
+              ورود
+          </Typography>
+          </Grid>
+        </Grid>
+    </Grid>
   );
 }
