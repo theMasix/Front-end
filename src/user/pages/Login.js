@@ -19,11 +19,12 @@ import khayam from '../../assets/khayam-j.jpg'
 import { } from '@material-ui/core/colors'
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import theme from '../../shared/Theming/theme';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh', 
+    height: '100vh',
   },
   logo: {
     maxHeight: '10em',
@@ -64,6 +65,25 @@ export default function SignInSide() {
     setPassword(e.target.value)
 
   }
+  const handleSubmit = async () => {
+    let response;
+    try {
+      response = await axios({
+        method: 'POST',
+        url: 'http://api.fumcbm.tk/v1/rest-auth/login/',
+        headers: { "Access-Control-Allow-Origin": "*" },
+
+        data: {
+          username: `${userName}`,
+          password: `${password}`
+        }
+      })
+      console.log(response.data);
+    }
+    catch (e) {
+    }
+
+  }
 
   return (
     <Grid container className={classes.root} justify="center">
@@ -102,7 +122,7 @@ export default function SignInSide() {
             <TextField label="رمز عبور " id="password" value={password} onChange={handlePassword} className={classes.field} fullWidth />
           </Grid>
           <Grid item lg={12} style={{ marginTop: '2em' }}>
-            <Button variant="contained" className={classes.buttonsubmit} color="primary" >ورود</Button>
+            <Button variant="contained" className={classes.buttonsubmit} color="primary" onClick={handleSubmit} >ورود</Button>
           </Grid>
         </Grid>
 
