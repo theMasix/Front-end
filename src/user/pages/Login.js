@@ -20,18 +20,15 @@ import { } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     height: '100vh',
   },
   logo: {
-    color: '#212121'
-    ,
-    width: '120px',
-    margin: '10px'
+    maxHeight: '10em',
+    marginTop:'3em'
   },
   khayamPhoto: {
-    width: '100%',
     height: '100%',
+    width: "100%",
     margin: 'auto',
     backgroundSize: 'cover',
     backgroundPosition: 'center'
@@ -42,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   field: {
-    margin:theme.spacing(4)
+    margin: theme.spacing(4)
   }
 }));
 
@@ -50,9 +47,9 @@ export default function SignInSide() {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root}>
-      <Grid container item sm={7}  >       {/* its children is column....this is row!!!!*/}
-        <Grid item sm={12}>
+    <Grid container className={classes.root} justify="center">
+      <Grid container item lg={7} direction="column" justify="center" >       {/* its children is column....this is row!!!!*/}
+        <Grid item lg={12}>
           <img
             src={khayam}
             alt="khayam-photo"
@@ -61,41 +58,24 @@ export default function SignInSide() {
         </Grid>
       </Grid>
 
-      <Grid container item sm={5} justify="center" >    {/* its children is column....this is row!!!!*/}
-        <Grid item container sm direction="column">
+      <Grid container item lg={5} alignItems="center" direction="column"  >    {/* its children is column....this is row!!!!*/}
 
-          <Grid item sm={4}>
-            <Grid container item sm={12} justify="center"  >
-              <Grid item sm={12} style={{ textAlign: 'center' }}>
-                <img src={logo} className={classes.logo} alt="logo" />
-              </Grid>
-              <Grid item sm={12} style={{ textAlign: 'center' }} >
-                <Typography variant={'h6'}>
-                  سیستم آزمایشی انتخاب واحد
-                </Typography>
-              </Grid>
-            </Grid>
+        <Grid item container  lg={5} justify="center">
+          <Grid item  lg={12} style={{textAlign:'center'}}>
+            <img src={logo} alt="logo" className={classes.logo} />
           </Grid>
-
-          <Grid item sm={8}>
-            <Grid container item sm={12} justify="center">
-              <form noValidate autoComplete="off">
-                <Grid item sm={12}>
-                  <TextField id="standard-basic" label="Standard" className={classes.field}/>
-                </Grid>
-                <Grid item sm={12}>
-                  <TextField id="standard-basic" label="Standard" className={classes.field} />
-                </Grid>
-                <Grid item sm={12}>
-                  <TextField id="standard-basic" label="Standard" className={classes.field} />
-                </Grid>
-              </form>
-            </Grid>
+          <Grid item lg={12} style={{textAlign:'center'}}>
+            <Typography variant="h6" style={{ lineHeight: 1 }}>
+              سیستم آزمایشی انتخاب واحد
+            </Typography>
+            <Typography variant="body1">
+              مبتنی بر نظریه بازی
+            </Typography>
           </Grid>
-
-
         </Grid>
+
       </Grid>
+
     </Grid>
   );
 }
