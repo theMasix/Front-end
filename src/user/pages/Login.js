@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     maxHeight: '10em',
-    marginTop:'3em'
+    marginTop: '3em'
   },
   khayamPhoto: {
     height: '100%',
@@ -40,11 +40,25 @@ const useStyles = makeStyles((theme) => ({
   },
   field: {
     margin: theme.spacing(4)
+  },
+  buttonsubmit:{
+    backgroundColor:theme.palette.primary
   }
 }));
 
 export default function SignInSide() {
   const classes = useStyles();
+
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('')
+
+  const handleUserName = (e) => {
+    setUserName(e.target.value)
+  }
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+
+  }
 
   return (
     <Grid container className={classes.root} justify="center">
@@ -60,12 +74,12 @@ export default function SignInSide() {
 
       <Grid container item lg={5} alignItems="center" direction="column"  >    {/* its children is column....this is row!!!!*/}
 
-        <Grid item container  lg={5} justify="center">
-          <Grid item  lg={12} style={{textAlign:'center'}}>
+        <Grid item container lg={5} justify="center">
+          <Grid item lg={12} style={{ textAlign: 'center' }}>
             <img src={logo} alt="logo" className={classes.logo} />
           </Grid>
-          <Grid item lg={12} style={{textAlign:'center'}}>
-            <Typography variant="h6" style={{ lineHeight: 1 }}>
+          <Grid item lg={12} style={{ textAlign: 'center' }}>
+            <Typography variant="h5" style={{ lineHeight: 1 }}>
               سیستم آزمایشی انتخاب واحد
             </Typography>
             <Typography variant="body1">
@@ -74,6 +88,19 @@ export default function SignInSide() {
           </Grid>
         </Grid>
 
+        <Grid item container >
+          <Grid item>
+            <TextField label="نام کاربری" id="name" value={userName} onChange={handleUserName} />
+          </Grid>
+          <Grid item>
+            <TextField label="رمز عبور " id="password" value={password} onChange={handlePassword} />
+          </Grid>
+          <Grid item>
+          <Button variant="contained" >ورود</Button>
+        </Grid>
+        </Grid>
+
+        
       </Grid>
 
     </Grid>
