@@ -10,7 +10,7 @@ const theme = createMuiTheme({
         MuiInputLabel: {
             root: {
                 color: blue[500],
-                fontSize: "1.25rem"
+                fontSize: "1.3rem"
             }
         },
 

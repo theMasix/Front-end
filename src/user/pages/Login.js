@@ -17,10 +17,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../assets/دانشکده علوم ریاضی.png'
 import khayam from '../../assets/khayam-j.jpg'
 import { } from '@material-ui/core/colors'
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import theme from '../../shared/Theming/theme';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: '100vh', 
   },
   logo: {
     maxHeight: '10em',
@@ -39,18 +42,20 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   field: {
-    margin: theme.spacing(4)
+    margin: theme.spacing(1),
   },
-  buttonsubmit:{
-    backgroundColor:theme.palette.primary
+  buttonsubmit: {
+    borderRadius: '50px',
+    width: '20rem',
+    fontSize: '2rem'
   }
 }));
 
 export default function SignInSide() {
   const classes = useStyles();
-
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('')
+  const matchesLG = useMediaQuery(theme.breakpoints.up('lg'));
 
   const handleUserName = (e) => {
     setUserName(e.target.value)
@@ -62,7 +67,8 @@ export default function SignInSide() {
 
   return (
     <Grid container className={classes.root} justify="center">
-      <Grid container item lg={7} direction="column" justify="center" >       {/* its children is column....this is row!!!!*/}
+
+      { matchesLG && <Grid container item lg={7} direction="column" justify="center" >       {/* its children is column....this is row!!!!*/}
         <Grid item lg={12}>
           <img
             src={khayam}
@@ -71,14 +77,14 @@ export default function SignInSide() {
           />
         </Grid>
       </Grid>
+      }
+      <Grid container item lg={5} sm={12} alignItems="center" direction="column"  >    {/* its children is column....this is row!!!!*/}
 
-      <Grid container item lg={5} alignItems="center" direction="column"  >    {/* its children is column....this is row!!!!*/}
-
-        <Grid item container lg={5} justify="center">
-          <Grid item lg={12} style={{ textAlign: 'center' }}>
+        <Grid item container lg={5} sm={6} justify="center">
+          <Grid item lg={12} sm={12} style={{ textAlign: 'center' }}>
             <img src={logo} alt="logo" className={classes.logo} />
           </Grid>
-          <Grid item lg={12} style={{ textAlign: 'center' }}>
+          <Grid item lg={12} sm={12} style={{ textAlign: 'center' }}>
             <Typography variant="h5" style={{ lineHeight: 1 }}>
               سیستم آزمایشی انتخاب واحد
             </Typography>
@@ -88,19 +94,19 @@ export default function SignInSide() {
           </Grid>
         </Grid>
 
-        <Grid item container >
+        <Grid item container style={{ maxWidth: '20em' }} justify="center" direction="column" >
           <Grid item>
-            <TextField label="نام کاربری" id="name" value={userName} onChange={handleUserName} />
+            <TextField label="نام کاربری" id="name" value={userName} onChange={handleUserName} className={classes.field} fullWidth />
           </Grid>
           <Grid item>
-            <TextField label="رمز عبور " id="password" value={password} onChange={handlePassword} />
+            <TextField label="رمز عبور " id="password" value={password} onChange={handlePassword} className={classes.field} fullWidth />
           </Grid>
-          <Grid item>
-          <Button variant="contained" >ورود</Button>
-        </Grid>
+          <Grid item lg={12} style={{ marginTop: '2em' }}>
+            <Button variant="contained" className={classes.buttonsubmit} color="primary" >ورود</Button>
+          </Grid>
         </Grid>
 
-        
+
       </Grid>
 
     </Grid>
