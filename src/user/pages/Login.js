@@ -71,7 +71,6 @@ export default function SignInSide() {
       response = await axios({
         method: 'POST',
         url: 'http://api.fumcbm.tk/v1/rest-auth/login/',
-        headers: { "Access-Control-Allow-Origin": "*" },
 
         data: {
           username: `${userName}`,
