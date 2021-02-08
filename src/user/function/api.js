@@ -17,8 +17,8 @@ const signInReq = async (userName, password) => {
 const signoutReq = async () => {
 
     return await axios({
-        method: 'POST',
-        url: 'api.fumcbm.tk/v1/rest-auth/logout/',
+        method: 'get',
+        url: 'http://api.fumcbm.tk/v1/rest-auth/logout',
     })
 
 }

@@ -6,6 +6,7 @@ import {
 import Home from './Home/Home'
 import Login from './user/pages/Login'
 import { isAuth } from './user/function/authentication'
+import StudentMain from './user/pages/student/StudentMain';
 
 const Routes = () => {
     return (
@@ -16,6 +17,9 @@ const Routes = () => {
             {(<Route exact path="/login">
                 <Login />
             </Route>)}
+            <Route path="/student">
+                <StudentMain />
+            </Route>
         </Switch>
     );
 };

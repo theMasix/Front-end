@@ -13,7 +13,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import theme from '../../shared/Theming/theme';
 import { signInReq ,signoutReq} from '../function/api'
 import { authenticateUser, isAuth } from '../function/authentication'
-import { Redirect } from 'react-router-dom';
 import { Paper } from '@material-ui/core'
 import { getLocalItem } from '../../shared/functions/storage';
 
@@ -110,10 +109,10 @@ export default function SignInSide() {
             <Grid item lg={12} sm={12} style={{ textAlign: 'center' }}>
               <Typography variant="h5" style={{ lineHeight: 1 }}>
                 سیستم آزمایشی انتخاب واحد
-      </Typography>
+              </Typography>
               <Typography variant="body1">
                 مبتنی بر نظریه بازی
-      </Typography>
+      ّ        </Typography>
             </Grid>
           </Grid>
 
