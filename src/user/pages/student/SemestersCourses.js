@@ -1,4 +1,4 @@
-import {React,useState} from 'react';
+import { React, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -16,48 +16,54 @@ const useStyles = makeStyles({
     },
 });
 
-function createData(courseId,courseName,instruterName,unit,groupNo,moreInfo) {
-    return {courseId,courseName,instruterName,unit,groupNo,moreInfo };
+function createData(courseId, courseName, instruterName, unit, groupNo, moreInfo) {
+    return { courseId, courseName, instruterName, unit, groupNo, moreInfo };
 }
 
 
 
 export default function SemestersCourses() {
     const classes = useStyles();
-    const [course,setCourse]=useState({
-        courseId:"321684",
-        courseName:"مبانی کامپیوتر و برنامه سازی",
-        instruterName : "دکتر رمضانیان",
-        unit : "3" ,
-        groupNo : "1" ,
-    })
-    const rows = [
-        createData(course.courseId,course.courseName,course.instruterName,course.unit,course.groupNo,'اطلاعات بیشتر'),
-        
-    ];
+    const [course, setCourse] = useState([{
+        courseId: "321684",
+        courseName: "مبانی کامپیوتر و برنامه سازی",
+        instruterName: "دکتر رمضانیان",
+        unit: "3",
+        groupNo: "1",
+    },
+    {
+        courseId: "321685",
+        courseName: "پیشرفته",
+        instruterName: "دکتر رمضانیان",
+        unit: "3",
+        groupNo: "1",
+    }])
+   
     return (
         <Container maxWidth="lg">
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Dessert (100g serving)</TableCell>
-                            <TableCell align="right">Calories</TableCell>
-                            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                            <TableCell align="right">اطلاعات</TableCell>
+                            <TableCell align="right">واحد</TableCell>
+                            <TableCell align="right">نام استاد</TableCell>
+                            <TableCell align="right">نام درس</TableCell>
+                            <TableCell align="right">گروه</TableCell>
+                            <TableCell align="right">شماره درس</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.name}>
+                        {course.map((element) => (
+                            <TableRow key={element.courseId}>
                                 <TableCell component="th" scope="row">
-                                    {row.name}
+                                    {'بعدا'}
                                 </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
+                                <TableCell align="right">{element.unit}</TableCell>
+                                <TableCell align="right">{element.instruterName}</TableCell>
+                                <TableCell align="right">{element.courseName}</TableCell>
+                                <TableCell align="right">{element.groupNo}</TableCell>
+                                <TableCell align="right">{element.courseId}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
