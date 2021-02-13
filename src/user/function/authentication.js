@@ -1,10 +1,13 @@
-import { setLocalStroage, getLocalItem } from '../../shared/functions/storage'
+import { setLocalStroage, getLocalItem, removeLocalStorage } from '../../shared/functions/storage'
 
 
-const authenticateUser = (fullName, studentId, token) => {
-    setLocalStroage('name', fullName)
-    setLocalStroage('id', studentId)
+const authenticateUser = (userInfo) => {
+    let { name, username, token, budget } = userInfo       //change this later
+    setLocalStroage('name', name)
+    setLocalStroage('id', username)
     setLocalStroage('token', token)
+    setLocalStroage('bg', budget)
+
 }
 const isAuth = () => {
     if (window !== undefined) {
@@ -17,5 +20,12 @@ const isAuth = () => {
 
     }
 }
+const logOut = () => {
+    removeLocalStorage('id')
+    removeLocalStorage('token')
+    removeLocalStorage('bg')
+    removeLocalStorage('name')
 
-export { authenticateUser, isAuth }
+}
+
+export { authenticateUser, isAuth, logOut }

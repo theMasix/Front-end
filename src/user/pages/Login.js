@@ -11,10 +11,11 @@ import khayam from '../../assets/khayam-j.jpg'
 import { } from '@material-ui/core/colors'
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import theme from '../../shared/Theming/theme';
-import { signInReq ,signoutReq} from '../function/api'
+import { signInReq, signoutReq } from '../function/api'
 import { authenticateUser, isAuth } from '../function/authentication'
 import { Paper } from '@material-ui/core'
 import { getLocalItem } from '../../shared/functions/storage';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignInSide() {
   const classes = useStyles();
-  const [userName, setUserName] = useState('testuser1');
-  const [password, setPassword] = useState('strongpass1')
+  const [userName, setUserName] = useState('9812223238');
+  const [password, setPassword] = useState('123')
   const matchesLG = useMediaQuery(theme.breakpoints.up('lg'));
 
   const handleUserName = (e) => {
@@ -65,7 +66,7 @@ export default function SignInSide() {
       response = await signInReq(userName, password)
       console.log(response.data)
       let userInfo = response.data;
-      authenticateUser('test', '1399', userInfo.key)
+      authenticateUser(userInfo)
 
     }
     catch (err) {
@@ -73,89 +74,79 @@ export default function SignInSide() {
     }
 
   }
-  const handleLogOut = async () => {
-    let response;
-    try {
-      response = await signoutReq()
-      console.log(response.data)
-      
-    }
-    catch (err) {
-      console.log(err.response.data)
-    }
-
-  }
-
+  
   if (!isAuth()) {
     return (
-      <Grid container className={classes.root} justify="center">
+      <React.Fragment>
+        <Grid container className={classes.root} justify="center">
 
-        { matchesLG && <Grid container item lg={7} direction="column" justify="center" >       {/* its children is column....this is row!!!!*/}
-          <Grid item lg={12}>
-            <img
-              src={khayam}
-              alt="khayam-photo"
-              className={classes.khayamPhoto}
-            />
-          </Grid>
-        </Grid>
-        }
-        <Grid container item lg={5} sm={12} alignItems="center" direction="column"  >    {/* its children is column....this is row!!!!*/}
-
-          <Grid item container lg={5} sm={6} justify="center">
-            <Grid item lg={12} sm={12} style={{ textAlign: 'center' }}>
-              <img src={logo} alt="logo" className={classes.logo} />
+          {matchesLG && <Grid container item lg={7} direction="column" justify="center" >       {/* its children is column....this is row!!!!*/}
+            <Grid item lg={12}>
+              <img
+                src={khayam}
+                alt="khayam-photo"
+                className={classes.khayamPhoto}
+              />
             </Grid>
-            <Grid item lg={12} sm={12} style={{ textAlign: 'center' }}>
-              <Typography variant="h5" style={{ lineHeight: 1 }}>
-                سیستم آزمایشی انتخاب واحد
+          </Grid>
+          }
+          <Grid container item lg={5} sm={12} alignItems="center" direction="column"  >    {/* its children is column....this is row!!!!*/}
+
+            <Grid item container lg={5} sm={6} justify="center">
+              <Grid item lg={12} sm={12} style={{ textAlign: 'center' }}>
+                <img src={logo} alt="logo" className={classes.logo} />
+              </Grid>
+              <Grid item lg={12} sm={12} style={{ textAlign: 'center' }}>
+                <Typography variant="h5" style={{ lineHeight: 1 }}>
+                  سیستم آزمایشی انتخاب واحد
               </Typography>
-              <Typography variant="body1">
-                مبتنی بر نظریه بازی
+                <Typography variant="body1">
+                  مبتنی بر نظریه بازی
       ّ        </Typography>
+              </Grid>
             </Grid>
-          </Grid>
 
-          <Grid item container style={{ maxWidth: '20em' }} justify="center" direction="column" >
-            <Grid item>
-              <TextField label="نام کاربری" id="name" value={userName} onChange={handleUserName} className={classes.field} fullWidth />
-            </Grid>
-            <Grid item>
-              <TextField label="رمز عبور " id="password" value={password} onChange={handlePassword} className={classes.field} fullWidth />
-            </Grid>
-            <Grid item lg={12} style={{ marginTop: '2em' }}>
-              <Button variant="contained" className={classes.buttonsubmit} color="primary" onClick={handleSubmit} >ورود</Button>
+            <Grid item container style={{ maxWidth: '20em' }} justify="center" direction="column" >
+              <Grid item>
+                <TextField label="نام کاربری" id="name" value={userName} onChange={handleUserName} className={classes.field} fullWidth />
+              </Grid>
+              <Grid item>
+                <TextField label="رمز عبور " id="password" value={password} onChange={handlePassword} className={classes.field} fullWidth />
+              </Grid>
+              <Grid item lg={12} style={{ marginTop: '2em' }}>
+                <Button variant="contained" className={classes.buttonsubmit} color="primary" onClick={handleSubmit} >ورود</Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </React.Fragment>
     )
   }
   else {
+    /*<Paper className={classes.mainPaper}>
+       <Grid container justify="center" spacing={4}>
+         <Grid item lg={12}>
+           <Typography variant="h3" color='primary' style={{ textAlign: 'center' }}>
+             login successfulled
+              {`${getLocalItem('name')}`}
+           </Typography>
+           <Typography variant="subtitle1" color='primary' style={{ textAlign: 'center' }}>
+             Welcome Mr. {`${getLocalItem('name')}`}
+           </Typography>
+           <Typography variant="body1" color='secondary' style={{ textAlign: 'center' }}>
+             token is "{`${getLocalItem('token')}`}"
+             keep it safe ....... :)
+           </Typography>
+         </Grid>
+         <Grid item style={{ textAlign: "center" }} lg={12} >
+           <Button variant="outlined" color="secondary" onClick={handleLogOut}>
+             SignOut
+           </Button>
+         </Grid>
+       </Grid>
+   </Paper>*/
     return (
-      <Paper className={classes.mainPaper}>
-        <Grid container justify="center" spacing={4}>
-          <Grid item lg={12}>
-            <Typography variant="h3" color='primary' style={{ textAlign: 'center' }}>
-              login successfulled
-               {`${getLocalItem('name')}`}
-            </Typography>
-            <Typography variant="subtitle1" color='primary' style={{ textAlign: 'center' }}>
-              Welcome Mr. {`${getLocalItem('name')}`}
-            </Typography>
-            <Typography variant="body1" color='secondary' style={{ textAlign: 'center' }}>
-              token is "{`${getLocalItem('token')}`}"
-              keep it safe ....... :)
-            </Typography>
-          </Grid>
-          <Grid item style={{ textAlign: "center" }} lg={12} >
-            <Button variant="outlined" color="secondary" onClick={handleLogOut}>
-              SignOut
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
-
+      <Redirect to="/student"/>
     )
 
   }
