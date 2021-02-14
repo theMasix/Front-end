@@ -60,13 +60,14 @@ export default function SignInSide() {
     setPassword(e.target.value)
 
   }
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
     let response;
     try {
       response = await signInReq(userName, password)
       console.log(response.data)
       let userInfo = response.data;
       authenticateUser(userInfo)
+      
 
     }
     catch (err) {
@@ -123,28 +124,6 @@ export default function SignInSide() {
     )
   }
   else {
-    /*<Paper className={classes.mainPaper}>
-       <Grid container justify="center" spacing={4}>
-         <Grid item lg={12}>
-           <Typography variant="h3" color='primary' style={{ textAlign: 'center' }}>
-             login successfulled
-              {`${getLocalItem('name')}`}
-           </Typography>
-           <Typography variant="subtitle1" color='primary' style={{ textAlign: 'center' }}>
-             Welcome Mr. {`${getLocalItem('name')}`}
-           </Typography>
-           <Typography variant="body1" color='secondary' style={{ textAlign: 'center' }}>
-             token is "{`${getLocalItem('token')}`}"
-             keep it safe ....... :)
-           </Typography>
-         </Grid>
-         <Grid item style={{ textAlign: "center" }} lg={12} >
-           <Button variant="outlined" color="secondary" onClick={handleLogOut}>
-             SignOut
-           </Button>
-         </Grid>
-       </Grid>
-   </Paper>*/
     return (
       <Redirect to="/student"/>
     )
