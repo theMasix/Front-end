@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import theme from "../../../shared/Theming/theme";
-import { Paper } from "@material-ui/core";
 import { getStudentReq, signoutReq } from "../../function/api";
 import { getLocalItem } from "../../../shared/functions/storage";
 import { isAuth, logOut } from "../../function/authentication";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 //home/login/student
 //public info
@@ -30,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const StudentMain = () => {
   const classes = useStyles();
+  const histort = useHistory();
   const [studentInfo, setStudentInfo] = useState({
     id: "97132546",
     college: "علوم ریاضی",
@@ -63,6 +62,7 @@ const StudentMain = () => {
       response = await signoutReq();
       console.log(response.data);
       logOut();
+      histort.replace("/login");
     } catch (err) {
       console.log(err.response.data);
     }
